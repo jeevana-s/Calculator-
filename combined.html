@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combined Calculator</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to Math Calculator CSS -->
+    <link rel="stylesheet" href="age.css"> <!-- Link to Age Calculator CSS -->
+</head>
+<body>
+    <div class="container">
+        <h1>Combined Calculator</h1>
+        <button id="mathBtn">Math Calculator</button>
+        <button id="ageBtn">Age Calculator</button>
+
+        <!-- Math Calculator Section -->
+        <div id="mathCalculator" class="calculator" style="display: none;">
+            <form class="calc">
+                <div class="header">
+                    <hr/>
+                    <h1>CALCUTRON 5000</h1>
+                    <input type="text" class="display" placeholder="0000000000000000" disabled>
+                    <hr/>
+                </div>
+                <div class="body" class="section group">
+                    <div class="row">
+                        <input type="button" value="7" onclick="appendToDisplay('7')">
+                        <input type="button" value="8" onclick="appendToDisplay('8')">
+                        <input type="button" value="9" onclick="appendToDisplay('9')">
+                        <input type="button" value="+" onclick="appendToDisplay('+')">
+                    </div>
+                    <div class="row">
+                        <input type="button" value="4" onclick="appendToDisplay('4')">
+                        <input type="button" value="5" onclick="appendToDisplay('5')">
+                        <input type="button" value="6" onclick="appendToDisplay('6')">
+                        <input type="button" value="-" onclick="appendToDisplay('-')">
+                    </div>
+                    <div class="row">
+                        <input type="button" value="1" onclick="appendToDisplay('1')">
+                        <input type="button" value="2" onclick="appendToDisplay('2')">
+                        <input type="button" value="3" onclick="appendToDisplay('3')">
+                        <input type="button" value="x" onclick="appendToDisplay('*')"> <!-- Use '*' for multiplication -->
+                    </div>
+                    <div class="row">
+                        <input type="button" value="0" onclick="appendToDisplay('0')">
+                        <input type="button" class="clear" value="c" onclick="clearDisplay()">
+                        <input type="button" class="equals" value="=" onclick="calculateResult()">
+                        <input type="button" value="/" onclick="appendToDisplay('/')">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+        <!-- Age Calculator Section -->
+        <div id="ageCalculator" class="calculator" style="display: none;">
+            <h2>Age Calculator</h2>
+            <label for="dobInput">Enter Your Birthdate:</label>
+            <input type="date" id="dobInput">
+            <button onclick="calculateAge()">Calculate Age</button>
+            <p id="ageResult"></p>
+            <script src="age.js"></script> 
+        </div>
+    </div>
+    <script src="script.js"></script> <!-- Link to Math Calculator JS -->
+    <!-- Link to Age Calculator JS -->
+</body>
+</html>

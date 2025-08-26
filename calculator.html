@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scientific Calculator</title>
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body Styling */
+    body {
+      background-color: #1d1f27;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    /* Calculator Container */
+    .calculator {
+      width: 400px;
+      background-color: #1d1f27;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0px 0px 20px #00f0ff;
+    }
+
+    /* Display Area */
+    .display {
+      width: 100%;
+      height: 60px;
+      background-color: #d1d1d1;
+      border-radius: 10px;
+      text-align: right;
+      padding: 10px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #000;
+      margin-bottom: 20px;
+    }
+
+    /* Buttons Grid */
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+
+    /* Button Styling */
+    .button {
+      background-color: #333;
+      color: white;
+      font-size: 20px;
+      padding: 20px;
+      border-radius: 12px;
+      border: none;
+      transition: all 0.2s ease-in-out;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .button:hover {
+      background-color: #00f0ff;
+      color: black;
+      transform: scale(1.1);
+    }
+
+    .button:active {
+      transform: scale(1);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <!-- Display Section -->
+    <div class="display" id="display">0</div>
+
+    <!-- Button Section -->
+    <div class="buttons">
+      <!-- Scientific Function Buttons -->
+      <button class="button" data-value="sin">sin</button>
+      <button class="button" data-value="cos">cos</button>
+      <button class="button" data-value="tan">tan</button>
+      <button class="button" data-value="log">log</button>
+      <button class="button" data-value="ln">ln</button>
+      <!-- Operations -->
+      <button class="button" data-value="√">√</button>
+      <button class="button" data-value="x²">x²</button>
+      <button class="button" data-value="^">^</button>
+      <button class="button" data-value="(">(</button>
+      <button class="button" data-value=")">)</button>
+      <!-- Number and Operation Buttons -->
+      <button class="button" data-value="7">7</button>
+      <button class="button" data-value="8">8</button>
+      <button class="button" data-value="9">9</button>
+      <button class="button" data-value="DEL">DEL</button>
+      <button class="button" data-value="AC">AC</button>
+      <button class="button" data-value="4">4</button>
+      <button class="button" data-value="5">5</button>
+      <button class="button" data-value="6">6</button>
+      <button class="button" data-value="×">×</button>
+      <button class="button" data-value="÷">÷</button>
+      <button class="button" data-value="1">1</button>
+      <button class="button" data-value="2">2</button>
+      <button class="button" data-value="3">3</button>
+      <button class="button" data-value="+">+</button>
+      <button class="button" data-value="-">-</button>
+      <button class="button" data-value="0">0</button>
+      <button class="button" data-value=".">.</button>
+      <button class="button" data-value="π">π</button>
+      <button class="button" data-value="e">e</button>
+      <button class="button" data-value="x10^">x10^</button>
+      <button class="button" data-value="Ans">Ans</button>
+      <button class="button" data-value="=">=</button>
+    </div>
+  </div>
+
+  <script>
+    // JavaScript to handle button clicks and display logic
+    const buttons = document.querySelectorAll('.button');
+    const display = document.getElementById('display');
+    let currentExpression = '';
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const buttonText = button.getAttribute('data-value');
+        
+        if (buttonText === 'AC') {
+          currentExpression = '';
+          display.textContent = '0';
+        } else if (buttonText === 'DEL') {
+          currentExpression = currentExpression.slice(0, -1);
+          display.textContent = currentExpression || '0';
+        } else if (buttonText === '=') {
+          try {
+            currentExpression = eval(currentExpression.replace('×', '').replace('÷', '/').replace('^', '*').replace('π', Math.PI).replace('e', Math.E));
+            display.textContent = currentExpression;
+          } catch {
+            display.textContent = 'Error';
+          }
+        } else {
+          currentExpression += buttonText;
+          display.textContent = currentExpression;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
